@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Allow frontend running on common Vite dev ports during development
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const allowedOrigins = "https://ace-desk-mern-frontend.onrender.com"
 
 app.use(
   cors({
