@@ -1,0 +1,41 @@
+/**
+ * ReviewCard - Single review display (stars, text, reviewer name/photo/role)
+ * Receives props: rating, text, name, image, role
+ */
+import React from "react";
+import { FaStar } from "react-icons/fa6";
+import { FaRegStar } from "react-icons/fa";
+const ReviewCard = ({ text, name, image, rating, role }) => {
+  return (
+    <div className="bg-[var(--surface)] border border-[var(--border)] p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 max-w-sm w-full text-[var(--text)]">
+      {/* ⭐ Rating Stars */}
+      <div className="flex items-center mb-3 text-yellow-400 text-sm">
+        {Array(5)
+          .fill(0)
+          .map((_, i) => (
+            <span key={i}>
+              {i < rating ? <FaStar/> : <FaRegStar/>}
+            </span>
+          ))}
+      </div>
+
+      {/* 💬 Review Text */}
+      <p className="text-[var(--muted)] text-sm mb-5">{text}</p>
+
+      {/* 👤 Reviewer Info */}
+      <div className="flex items-center gap-3">
+        <img
+          src={image}
+          alt={name}
+          className="w-10 h-10 rounded-full object-cover"
+        />
+        <div>
+          <h4 className="font-semibold text-[var(--text)] text-sm">{name}</h4>
+          <p className="text-xs text-[var(--muted)]">{role}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ReviewCard;

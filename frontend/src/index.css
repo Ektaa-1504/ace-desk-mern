@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root{
+  /* Dark blue SaaS theme */
+  --bg: #0B1120;        /* main background */
+  --bg2: #0B1120;
+  --surface: #020617;   /* primary surface for cards/sections */
+  --surface2: #020617;
+  --border: #1f2937;    /* slate-800 border */
+
+  --text: #FFFFFF;      /* primary text */
+  --muted: #94A3B8;     /* secondary text */
+  --faint: #64748b;     /* subtle labels */
+
+  --primary: #2563EB;   /* Primary Blue */
+  --primary2: #60A5FA;  /* Light Blue */
+  --danger: #ef4444;
+  --success: #22c55e;
+
+  --shadow: 0 18px 45px rgba(15, 23, 42, 0.65);
+  --radius: 14px;
+}
+
+*{ box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  /* Dark blue background on every page/route */
+  background: radial-gradient(circle at top, #111827 0, var(--bg) 55%, #020617 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography: headings vs body */
+h1, h2, h3, h4, h5, h6,
+.heading-font{
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 600;
+}
+
+p, span, li, input, textarea, button{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Ensure the same base background even if pages set their own wrappers */
+#root{
+  min-height: 100%;
+  background: transparent;
+}
+
+a{
+  color: color-mix(in srgb, var(--primary) 90%, white 10%);
+  text-decoration: none;
+}
+a:hover{ text-decoration: underline; }
+
+::selection{
+  background: color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+/* Optional: make common form elements feel more modern even without per-component styling */
+input, textarea, select{
+  color: inherit;
+}
+
+/* Nicer scrollbar on Chromium browsers */
+*::-webkit-scrollbar{ width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0);
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,0.25); }
+*::-webkit-scrollbar-track{ background: rgba(255,255,255,0.06); }
+
