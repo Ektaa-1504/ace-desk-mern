@@ -90,12 +90,6 @@ npm run dev
 
 ---
 
-## 📸 Screenshots
-
-*(To be added by contributors: Add screenshots of your Home Page, AI Quiz, and Dashboard here!)*
-
----
-
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome!
 
