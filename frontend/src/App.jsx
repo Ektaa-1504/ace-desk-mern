@@ -39,7 +39,7 @@ import SearchWithAi from './pages/SearchWithAi'
 import getAllReviews from './customHooks/getAllReviews'
 
 // Backend API base URL - used by axios in all API calls
-export const serverUrl = "https://ace-desk-mern.onrender.com"
+export const serverUrl = "https://ace-desk-mern-1.onrender.com"
 
 function App() {
   // useSelector: reads from Redux store. state.user comes from userSlice
