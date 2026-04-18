@@ -30,13 +30,6 @@ const AiTutor = ({ courseId, courseTitle, courseDescription }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-   // courseId changes (user opens different course) → reset previous data
-  useEffect(() => {
-    setQuestion("")
-    setAnswer("")
-    setError("")
-  }, [courseId])
-
   const handleAsk = async () => {
     if (!question.trim()) return;
     setLoading(true);
@@ -113,12 +106,6 @@ const AiFlashcards = ({ courseId, courseTitle, courseDescription }) => {
   const [flashcards, setFlashcards] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-   // courseId changes → clear old flashcards
-  useEffect(() => {
-    setFlashcards([])
-    setError("")
-  }, [courseId])
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -205,15 +192,6 @@ const AiQuiz = ({ courseId, courseTitle, courseDescription }) => {
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState(null);
-
-   // courseId changes → reset entire quiz
-  useEffect(() => {
-    setQuiz(null)
-    setAnswers({})
-    setSubmitted(false)
-    setResult(null)
-    setError("")
-  }, [courseId])
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -503,12 +481,16 @@ console.log("Average Rating:", avgRating);
   setIsEnrolled(verify || false)
 };
 
+// runs ONLY when courseId changes — hard reset
 useEffect(() => {
-  // reset first so AI components unmount → their state clears → fresh for new course
   setIsEnrolled(false)
+}, [courseId])
+
+// runs when courseData is available — fetch and check enrollment
+useEffect(() => {
   fetchCourseData()
   checkEnrollment()
-}, [courseId, courseData, lectureData])
+}, [courseId, courseData])
 
 
     // Fetch creator info once course data is available
