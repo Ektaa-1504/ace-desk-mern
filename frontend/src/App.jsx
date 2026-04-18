@@ -44,6 +44,7 @@ export const serverUrl = "https://ace-desk-mern-1.onrender.com"
 function App() {
   // useSelector: reads from Redux store. state.user comes from userSlice
   let {userData} = useSelector(state=>state.user)
+  if (isLoading) return null
 
   // These hooks run on every route - they fetch and populate Redux
   getCurrentUser()        // Checks if user has valid session cookie, sets userData
