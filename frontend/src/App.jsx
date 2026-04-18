@@ -40,17 +40,18 @@ import getAllReviews from './customHooks/getAllReviews'
 
 // Backend API base URL - used by axios in all API calls
 export const serverUrl = "https://ace-desk-mern-1.onrender.com"
+// export const serverUrl = "http://localhost:8000"
 
 function App() {
   // useSelector: reads from Redux store. state.user comes from userSlice
-  let {userData} = useSelector(state=>state.user)
-  if (isLoading) return null
-
+  let {userData, isLoading} = useSelector(state=>state.user)
   // These hooks run on every route - they fetch and populate Redux
   getCurrentUser()        // Checks if user has valid session cookie, sets userData
   getCouseData()          // Fetches all published courses → courseSlice
   getCreatorCourseData()  // Fetches educator's own courses → courseSlice.creatorCourseData
   getAllReviews()         // Fetches all reviews → reviewSlice
+
+  if (isLoading) return null
   return (
     <>
       <ToastContainer />  {/* Toast notifications - toast.success(), toast.error() come from react-toastify */}

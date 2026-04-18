@@ -16,11 +16,17 @@ let app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// Allow frontend running on common Vite dev ports during development
-app.use(cors({
-  origin: "https://ace-desk-mern-frontend.onrender.com",
+// Deployed CORS
+ app.use(cors({
+   origin: "https://ace-desk-mern-frontend.onrender.com",
+   credentials: true,
+ }));
+
+// Local Development CORS
+/*app.use(cors({
+  origin: "http://localhost:5173",
   credentials: true,
-}));
+}));*/
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);

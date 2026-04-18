@@ -721,18 +721,21 @@ setIsEnrolled(true)
   {isEnrolled && (
     <>
       <AiTutor
+        key={`tutor-${courseId}`}
         courseId={courseId}
         courseTitle={selectedCourseData?.title}
         courseDescription={selectedCourseData?.description || selectedCourseData?.subTitle}
       />
 
       <AiFlashcards
+        key={`flashcards-${courseId}`}
         courseId={courseId}
         courseTitle={selectedCourseData?.title}
         courseDescription={selectedCourseData?.description || selectedCourseData?.subTitle}
       />
 
       <AiQuiz
+        key={`quiz-${courseId}`}
         courseId={courseId}
         courseTitle={selectedCourseData?.title}
         courseDescription={selectedCourseData?.description || selectedCourseData?.subTitle}

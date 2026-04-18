@@ -15,7 +15,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        userData: null
+        userData: null ,
         isLoading: true   // null = logged out
     },
     reducers: {

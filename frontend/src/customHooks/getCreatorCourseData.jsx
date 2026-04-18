@@ -30,12 +30,16 @@ const getCreatorCourseData = () => {
         console.log(result.data)
         
       } catch (error) {
-        console.log(error)
-        toast.error(error.response.data.message)
+        console.log("Educator fetch failed", error)
+        toast.error("Couldn't load your educator courses. Please try reloading.")
       }
       
     }
-    getCreatorData()
+    
+    // Only attempt to fetch creator courses if the user is actually an educator
+    if (userData?.role === "educator") {
+        getCreatorData()
+    }
   },[userData])
   )
 }
