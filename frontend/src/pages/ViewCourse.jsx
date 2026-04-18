@@ -717,25 +717,33 @@ setIsEnrolled(true)
       🔒 Please <strong>enroll in this course</strong> to unlock AI Tutor, Flashcards, and Quiz features.
     </div>
   )}
-
+{/* 
+  key={`tutor-${courseId}`} — when courseId changes, React destroys and 
+  recreates this component fresh, which resets all its state (question, answer, etc.)
+  
+  Each component needs a different prefix (tutor/flashcards/quiz) because 
+  React uses key to identify elements — if two siblings have the same key,
+  React thinks they are the same element and won't reset them properly.
+  Think of key like a name tag — two people in the same room can't have the same name tag.
+*/}
   {isEnrolled && (
     <>
       <AiTutor
-        key={courseId} 
+        key={`tutor-${courseId}`}
         courseId={courseId}
         courseTitle={selectedCourseData?.title}
         courseDescription={selectedCourseData?.description || selectedCourseData?.subTitle}
       />
 
       <AiFlashcards
-        key={courseId} 
+        key={`flashcards-${courseId}`}
         courseId={courseId}
         courseTitle={selectedCourseData?.title}
         courseDescription={selectedCourseData?.description || selectedCourseData?.subTitle}
       />
 
       <AiQuiz
-        key={courseId} 
+        key={`quiz-${courseId}`}
         courseId={courseId}
         courseTitle={selectedCourseData?.title}
         courseDescription={selectedCourseData?.description || selectedCourseData?.subTitle}
