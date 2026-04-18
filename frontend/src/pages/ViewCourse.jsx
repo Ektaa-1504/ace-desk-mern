@@ -470,27 +470,21 @@ console.log("Average Rating:", avgRating);
     })
 
   }
-  const checkEnrollment = () => {
+    const checkEnrollment = () => {
   const verify = userData?.enrolledCourses?.some(c => {
     const enrolledId = typeof c === 'string' ? c : c._id;
     return enrolledId?.toString() === courseId?.toString();
   });
+
   console.log("Enrollment verified:", verify);
-  // always set true or false — not just true
-  // previously if verify was false, setIsEnrolled never ran → stayed true from previous course
-  setIsEnrolled(verify || false)
+  if (verify) {
+    setIsEnrolled(true);
+  }
 };
-
-// runs ONLY when courseId changes — hard reset
-useEffect(() => {
-  setIsEnrolled(false)
-}, [courseId])
-
-// runs when courseData is available — fetch and check enrollment
-useEffect(() => {
-  fetchCourseData()
-  checkEnrollment()
-}, [courseId, courseData])
+  useEffect(() => {
+    fetchCourseData()
+    checkEnrollment()
+  }, [courseId,courseData,lectureData])
 
 
     // Fetch creator info once course data is available
@@ -723,7 +717,7 @@ setIsEnrolled(true)
       🔒 Please <strong>enroll in this course</strong> to unlock AI Tutor, Flashcards, and Quiz features.
     </div>
   )}
-  
+
   {isEnrolled && (
     <>
       <AiTutor
