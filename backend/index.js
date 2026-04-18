@@ -17,22 +17,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Allow frontend running on common Vite dev ports during development
-const allowedOrigins = "https://ace-desk-mern-frontend.onrender.com"
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow non-browser tools (like Postman) with no origin
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      console.warn("Blocked CORS origin:", origin);
-      return callback(new Error("Not allowed by CORS"));
-    },
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://ace-desk-mern-frontend.onrender.com",
+  credentials: true,
+}));
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
