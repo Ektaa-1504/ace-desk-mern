@@ -15,12 +15,14 @@ import { createSlice } from "@reduxjs/toolkit"
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        userData: null   // null = logged out
+        userData: null
+        isLoading: true   // null = logged out
     },
     reducers: {
         // action.payload = user object from API (or null for logout)
         setUserData: (state, action) => {
             state.userData = action.payload
+            state.isLoading = false
         }
     }
 })
